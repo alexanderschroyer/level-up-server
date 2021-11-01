@@ -1,0 +1,35 @@
+[
+    {
+        "model": "levelupapi.event",
+        "pk": 1,
+        "fields": {
+            "game": 2,
+            "description": "A game about how language evolves and dies.",
+            "date": "2021-11-01",
+            "time": "03:12",
+            "organizer": 1
+        }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 2,
+        "fields": {
+            "game": 1,
+            "description": "Line em up",
+            "date": "2020-10-11",
+            "time": "03:12",
+            "organizer": 1
+        }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 3,
+        "fields": {
+            "game": 3,
+            "description": "Live long and prosper",
+            "date": "2021-04-02",
+            "time": "06:24",
+            "organizer": 1
+        }
+    }
+]
