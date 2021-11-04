@@ -19,12 +19,14 @@ from django.urls import path
 from rest_framework import routers
 from levelupapi.views import register_user, login_user
 from levelupapi.views import GameTypeView
-from levelupapi.views import GameTypes, Games
+# from levelupapi.views import GameType, Game
+from levelupapi.views.event import EventView
 from levelupapi.views.game import GameView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'gametypes', GameTypeView, 'gametype')
 router.register(r'games', GameView, 'game')
+router.register(r'events', EventView, 'event')
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -33,4 +35,3 @@ urlpatterns = [
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
 ]
-
