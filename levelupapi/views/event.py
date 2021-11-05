@@ -17,17 +17,17 @@ class EventView(ViewSet):
         Returns:
             Response -- JSON serialized game instance"""
         gamer = Gamer.objects.get(user=request.auth.user)
-
+        game = Game.objects.get(pk=request.data["gameId"])
         try:
             event = Event.objects.create(
-                game= Game.objects.get(pk=request.data["gameId"]),
+                game=game,
                 description=request.data["description"],
                 date=request.data["date"],
                 time=request.data["time"],
-                organizer=Gamer.objects.get(user=request.auth.user)
+                organizer=gamer
             )
             serializer = EventSerializer(event, context={'request': request})
-            return Response(serializer.data, status+status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
@@ -51,7 +51,7 @@ class EventView(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
-        gamer = Gamer.objects.get(user=request.auth.user)
+        
 
         event = Event.objects.get(pk=pk)
         event.game = Game.objects.get(pk=request.data["gameId"])
