@@ -27,7 +27,7 @@ class EventView(ViewSet):
                 organizer=Gamer.objects.get(user=request.auth.user)
             )
             serializer = EventSerializer(event, context={'request': request})
-            return Response(serializer.data)
+            return Response(serializer.data, status+status.HTTP_201_CREATED)
 
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
@@ -137,4 +137,4 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ('id', 'game', 'description', 'date', 'time', 'organizer')
-        
+        depth = 2
